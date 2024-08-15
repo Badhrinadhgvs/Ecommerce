@@ -48,14 +48,14 @@ const csrftoken = getToken('csrftoken');
             <a class="nav-link active text-white" aria-current="page" href="/">Store</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white" href="#">Categories</a>
+            <a class="nav-link active text-white" href="{% url 'category' %}">Categories</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active text-white "  >USER:
             <h8 class="text-warning">{{ request.user }}</h8></a>
           </li> 
         </ul>
-        <a href="#"class="btn btn-warning">Login</a>
+        <a href="{% url 'logout' %}" class="btn btn-warning rounded">Logout</a>
         <div class="form-inline my-2 my-lg-0">
           
           <a class="nav-link" href="{% url 'cart' %}">

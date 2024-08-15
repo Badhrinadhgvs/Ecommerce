@@ -1,33 +1,24 @@
 {% extends "main.html" %}
 {% load static %}
 {% block content %}
-<div class="container" style="text-align: center;">
+<div class="container" style="text-align: center;margin-bottom:100%;">
+<h1>Categories</h1>
+<hr>
+{% for i in i %}
+
 <br>
 <h3>
-<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-  Underline opacity 0
+<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'categoryDetail'  i.id %}">
+  {{i.cat_name}}
 </a>
 </h3>
 <br>
-<h3>
-<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-  Underline opacity 0
-</a>
-</h3>
-<h3>
-<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-  Underline opacity 0
-</a>
-</h3>
-<h3>
-<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-  Underline opacity 0
-</a>
-</h3>
-<h3>
-<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-  Underline opacity 0
-</a>
-</h3>
+{% endfor %}
 </div>
+<hr>
+<style>
+footer{
+  margin-bottom:0px;
+}
+</style>
 {% endblock content %}

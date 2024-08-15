@@ -6,11 +6,18 @@
 	margin:10px;
 }
 </style>
+<a  class="btn btn-outline-dark" href="{% url 'store' %}" style="margin:5px;">&#x2190; Continue Shopping</a>
+<br>
+<hr>
 <div class="row">
-{% for i in pro %}
-	<div class="col-lg-4" >
+{% for i in i %}
+<center>
+<h1 >{{i.cat_name}}</h1>
+</center>
+<hr>
+	<div class="col-lg-4" style="margin:2px;">
 	{% if i.image %}
-	<img class="thumbnail " src="static/images/{{i.image}}">
+	<img class="thumbnail " src="{{i.image.url}}">
 	{% else %}
 		<img class="thumbnail" src="static/images/place.jpeg">
 	{% endif %}
