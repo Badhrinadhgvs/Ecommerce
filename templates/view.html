@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
+<script src="{% static 'js/view.js' %}"></script>
+<section class="text-gray-600 body-font overflow-hidden" style="background-color:transparent;margin:10px;">
+  <div class="container px-15 py-24 mx-auto" style="border:0.5px solid black;border-top:-10px;border-radius:20px;">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+    {% if item.image %}
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{item.image.url}}">
+    
+    {% else %}
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{% static 'images/place.jpeg' %}">
+    {% endif %}
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        {% comment %} <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2> {% endcomment %}
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{item.name}}</h1>
+                <p class="leading-relaxed">{% lorem 1 %}</p>
+        
+        <div class="flex">
+          <span class="title-font font-medium text-2xl text-gray-900">${{item.price}}</span>
+          <a class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded update-cart" href="" data-product={{item.id}} data-action="add">Add to cart</a>
+          <a class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded" href="/">
+              &#x2190; Continue
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

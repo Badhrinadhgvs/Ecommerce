@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+<style>
+.add-btn,.war{
+	margin:10px;
+}
+</style>
+<div class="row">
+{% for i in pro %}
+	<div class="col-lg-4">
+	{% if i.image %}
+	<img class="thumbnail " src="static/images/{{i.image}}">
+	{% else %}
+		<img class="thumbnail" src="static/images/place.jpeg">
+	{% endif %}
+		<div class="box-element product ">
+		<h6><strong>{{i.name}}</strong></h6>
+		<span class="badge text-bg-warning war">{{i.cat}}</span>
+		<hr>
+		<button  class="btn btn-outline-secondary add-btn update-cart" data-product={{i.id}} data-action="add"  id="add" >Add to Cart</button>
+		<a class="btn btn-outline-success" href="{% url 'view_det' i.name%}">View</a>
+		<h4 style="display: inline-block; float: right;"><strong>{{i.price}}$</strong></h4>
+		</div>
+	</div>
+{% endfor %} 
+
+</div>
+<scripts src="{% static 'js/store.js' %}">
+
+</scripts>
+{% endblock content %}
