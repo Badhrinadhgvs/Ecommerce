@@ -13,7 +13,6 @@ from django.core.mail import send_mail
 
 @login_required(login_url="/register/")
 def store(request):
-
 	if request.user.is_authenticated:
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -24,9 +23,12 @@ def store(request):
 		items = []
 		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
 		cartItems = order['get_cart_items']
-
+  
 	products = Product.objects.all()
+  
+ 
 	context = {'pro':products, 'cartItems':cartItems}
+ 
 	return render(request, 'store.html', context)
 
 
@@ -119,9 +121,11 @@ def register_main(request):
     v=Customer.objects.create(user=c,email=email,name=username)
     v.save()
     c.save()
+    messages.success(request,'Account Created Successfully')
+    
     sub= "Account Confirmation"
-    body=f"Dear{request.user} , Thank you for choosing our website to order your items"
-    email=request.user.email
+    body=f"Dear{username} , Thank you for choosing our website to order your items"
+    
     send_mail(sub,body,"badhrinadh.g.v.s@gmail.com",[email],fail_silently=False)
     return render(request,'register.html')
   return render(request,'register.html')
@@ -140,6 +144,9 @@ def login_main(request):
       return redirect('login')
     else:
       login(request,user)
+      messages.success(request,'Login Success,Welcome back!!')
+      
+      print(request.user.email)
       return redirect('store')
   return render(request,'login.html')
   
@@ -164,6 +171,7 @@ def updateItem(request):
 
 	if action == 'add':
 		orderItem.quantity = (orderItem.quantity + 1)
+  
 	elif action == 'remove':
 		orderItem.quantity = (orderItem.quantity - 1)
 
